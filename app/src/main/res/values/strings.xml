@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TheMarvelBusiness</string>
+    <string name="title_comic_detail">Comic Detail</string>
+    <string name="marvel_public">54306733de0f5cd1418aa05a85fa062a</string>
+    <string name="marvel_private">5de1fabcda2ea08912bd8b09bca4321f50563655</string>
+    <string name="comicsurl">http://gateway.marvel.com/v1/public/comics</string>
+</resources>
