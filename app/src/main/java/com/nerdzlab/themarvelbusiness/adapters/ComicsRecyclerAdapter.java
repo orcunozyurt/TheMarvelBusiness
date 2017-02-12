@@ -1,6 +1,8 @@
 package com.nerdzlab.themarvelbusiness.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,10 +11,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.karumi.marvelapiclient.model.ComicDto;
 import com.karumi.marvelapiclient.model.ComicsDto;
 import com.karumi.marvelapiclient.model.MarvelImage;
 import com.karumi.marvelapiclient.model.MarvelResponse;
+import com.nerdzlab.themarvelbusiness.ComicDetailActivity;
+import com.nerdzlab.themarvelbusiness.ComicDetailFragment;
+import com.nerdzlab.themarvelbusiness.ComicListActivity;
 import com.nerdzlab.themarvelbusiness.R;
 import com.squareup.picasso.Picasso;
 
@@ -27,10 +33,12 @@ import java.util.List;
 public class ComicsRecyclerAdapter extends RecyclerView.Adapter<ComicsRecyclerAdapter.ViewHolder> {
     private final Context context;
     private List<ComicDto> mDataSet;
+    private Boolean mTwoPane;
 
-    public ComicsRecyclerAdapter(List<ComicDto> data, Context context) {
+    public ComicsRecyclerAdapter(List<ComicDto> data, Context context, Boolean mTwoPane) {
         this.mDataSet = data;
         this.context = context;
+        this.mTwoPane = mTwoPane;
     }
 
     public void swapItems(List<ComicDto>  data) {
@@ -47,13 +55,37 @@ public class ComicsRecyclerAdapter extends RecyclerView.Adapter<ComicsRecyclerAd
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        ComicDto item = mDataSet.get(position);
+    public void onBindViewHolder(final ViewHolder holder, int position) {
+        final ComicDto item = mDataSet.get(position);
 
         holder.getTitle().setText(item.getTitle());
         holder.getDescription().setText(item.getDescription());
 
         getComicThumbnail(holder.getThumbnail(), item.getThumbnail().getImageUrl(MarvelImage.Size.FULLSIZE));
+
+        Gson gson = new Gson();
+        final String itemInString = gson.toJson(item);
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mTwoPane) {
+                    Bundle arguments = new Bundle();
+                    arguments.putString(ComicDetailFragment.ARG_ITEM_STRING, itemInString);
+                    ComicDetailFragment fragment = new ComicDetailFragment();
+                    fragment.setArguments(arguments);
+                    ((ComicListActivity)context).getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.comic_detail_container, fragment)
+                            .commit();
+                } else {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, ComicDetailActivity.class);
+                    intent.putExtra(ComicDetailFragment.ARG_ITEM_STRING, itemInString);
+
+                    context.startActivity(intent);
+                }
+            }
+        });
 
     }
 

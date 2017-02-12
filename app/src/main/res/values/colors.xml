@@ -3,4 +3,14 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="info_blue">#7289A4</color>
+    <color name="dark_gray">@android:color/darker_gray</color>
+    <color name="section_gray">#D8D8D8</color>
+    <color name="secure_green">#72ba06</color>
+    <color name="light_grayish">#20000000</color>
+    <color name="appblack">#cc000000</color>
+    <color name="sectionblack">#99000000</color>
+    <color name="blurwhite">#0D000000</color>
 </resources>

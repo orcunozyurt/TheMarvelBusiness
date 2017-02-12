@@ -4,4 +4,10 @@
     <string name="marvel_public">54306733de0f5cd1418aa05a85fa062a</string>
     <string name="marvel_private">5de1fabcda2ea08912bd8b09bca4321f50563655</string>
     <string name="comicsurl">http://gateway.marvel.com/v1/public/comics</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
+    <string name="input">What\'s your budget ?</string>
+    <string name="input_content">Here we try to determine the most valuable purchase for you. Give us your budget, and we ll provide you the most pages!</string>
+    <string name="input_hint">100</string>
+    <string name="input_prefill">50</string>
 </resources>

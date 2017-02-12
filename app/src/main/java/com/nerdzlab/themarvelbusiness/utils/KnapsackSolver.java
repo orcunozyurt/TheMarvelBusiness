@@ -21,19 +21,5 @@ public abstract class KnapsackSolver {
 
     public abstract KnapsackSolution solve();
 
-    public double getWeight(List<ComicDto> items) {
-        double weight = 0;
-        for (ComicDto item : items) {
-            weight += item.getPrices().get(0).getPrice();
-        }
-        return weight;
-    }
 
-    public double getValue(List<ComicDto> items) {
-        double value = 0;
-        for (ComicDto item : items) {
-            value += item.getPageCount();
-        }
-        return value;
-    }
 }
