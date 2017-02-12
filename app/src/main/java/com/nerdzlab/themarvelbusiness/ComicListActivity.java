@@ -1,28 +1,16 @@
 package com.nerdzlab.themarvelbusiness;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.karumi.marvelapiclient.ComicApiClient;
 import com.karumi.marvelapiclient.MarvelApiConfig;
 import com.karumi.marvelapiclient.MarvelApiException;
@@ -31,18 +19,10 @@ import com.karumi.marvelapiclient.model.ComicsDto;
 import com.karumi.marvelapiclient.model.ComicsQuery;
 import com.karumi.marvelapiclient.model.MarvelResponse;
 import com.nerdzlab.themarvelbusiness.adapters.ComicsRecyclerAdapter;
-import com.nerdzlab.themarvelbusiness.utils.MyApplication;
-import com.nerdzlab.themarvelbusiness.utils.Package;
+import com.nerdzlab.themarvelbusiness.utils.DynamicProgrammingSolver;
+import com.nerdzlab.themarvelbusiness.utils.KnapsackSolver;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import static com.nerdzlab.themarvelbusiness.utils.Knapsack.knapsack;
 
 /**
  * An activity representing a list of Comics. This activity
@@ -137,11 +117,11 @@ public class ComicListActivity extends AppCompatActivity {
             Log.d(TAG, "notify data set changed");
             mAdapter.swapItems(data);
             Log.d(TAG, "start--------------------------------");
-            //Package.printOptimalChoice(data,Float.parseFloat("100.0"));
-            int val[] = {10, 40, 30, 50};
-            int wt[] = {5, 4, 6, 3};
-            int W = 10;
-            System.out.println(knapsack(val, wt, W));
+
+            KnapsackSolver solver = new DynamicProgrammingSolver(data,200);
+            System.out.println(solver.solve());
+
+            Log.d(TAG, "END------------" );
 
 
         }
