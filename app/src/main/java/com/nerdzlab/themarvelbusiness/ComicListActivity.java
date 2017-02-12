@@ -24,6 +24,7 @@ import com.nerdzlab.themarvelbusiness.adapters.ComicsRecyclerAdapter;
 import com.nerdzlab.themarvelbusiness.utils.BranchAndBoundSolver;
 import com.nerdzlab.themarvelbusiness.utils.KnapsackSolution;
 import com.nerdzlab.themarvelbusiness.utils.KnapsackSolver;
+import com.nerdzlab.themarvelbusiness.utils.MyApplication;
 
 import java.util.List;
 
@@ -115,9 +116,21 @@ public class ComicListActivity extends AppCompatActivity {
 
     }
 
+    /*@Override
+    protected void onStart() {
+        super.onStart();
+        if(MyApplication.getInstance().retrieveDataSharedPrefs() != null &&
+                MyApplication.getInstance().retrieveDataSharedPrefs().size()>0)
+        {
+            data=MyApplication.getInstance().retrieveDataSharedPrefs();
+        }
+    }*/
+
     @Override
     protected void onResume() {
         super.onResume();
+
+
 
         comicsrecyclerview = (RecyclerView) findViewById(R.id.comic_list);
         assert comicsrecyclerview != null;
@@ -127,17 +140,13 @@ public class ComicListActivity extends AppCompatActivity {
         marvelApiConfig =
                 new MarvelApiConfig.Builder(
                         getString(R.string.marvel_public), getString(R.string.marvel_private))
-                        .debug()
                         .build();
 
         GetComicsTask getComicsTask = new GetComicsTask();
         getComicsTask.execute();
     }
 
-    public void Reset()
-    {
 
-    }
 
     public class GetComicsTask extends AsyncTask<Void, Void, Boolean> {
 
