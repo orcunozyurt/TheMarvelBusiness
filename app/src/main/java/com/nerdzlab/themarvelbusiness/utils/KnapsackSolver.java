@@ -1,7 +1,6 @@
 package com.nerdzlab.themarvelbusiness.utils;
 
 import com.karumi.marvelapiclient.model.ComicDto;
-import com.nerdzlab.themarvelbusiness.models.Comic;
 
 import java.util.List;
 

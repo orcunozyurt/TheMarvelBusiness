@@ -21,15 +21,11 @@ import com.karumi.marvelapiclient.model.ComicsDto;
 import com.karumi.marvelapiclient.model.ComicsQuery;
 import com.karumi.marvelapiclient.model.MarvelResponse;
 import com.nerdzlab.themarvelbusiness.adapters.ComicsRecyclerAdapter;
-import com.nerdzlab.themarvelbusiness.models.Comic;
 import com.nerdzlab.themarvelbusiness.utils.BranchAndBoundSolver;
-import com.nerdzlab.themarvelbusiness.utils.DynamicProgrammingSolver;
 import com.nerdzlab.themarvelbusiness.utils.KnapsackSolution;
 import com.nerdzlab.themarvelbusiness.utils.KnapsackSolver;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  * An activity representing a list of Comics. This activity
